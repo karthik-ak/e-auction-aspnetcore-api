@@ -10,10 +10,10 @@
           "Port": 36886
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/seller/add-product",
       "UpstreamHttpMethod": [ "POST" ]
     },
@@ -26,10 +26,10 @@
           "Port": 36886
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/seller/get-products/{emailId}",
       "UpstreamHttpMethod": [ "GET" ]
     },
@@ -42,10 +42,10 @@
           "Port": 36886
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/seller/get-all-products",
       "UpstreamHttpMethod": [ "GET" ]
     },
@@ -58,10 +58,10 @@
           "Port": 36886
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/seller/get-product/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
@@ -74,10 +74,10 @@
           "Port": 36886
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/seller/update",
       "UpstreamHttpMethod": [ "PUT" ]
     },
@@ -90,10 +90,10 @@
           "Port": 36886
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/seller/delete/{productId}",
       "UpstreamHttpMethod": [ "DELETE" ]
     },
@@ -107,10 +107,10 @@
           "Port": 59655
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/buyer/place-bid",
       "UpstreamHttpMethod": [ "POST" ]
     },
@@ -123,10 +123,10 @@
           "Port": 59655
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/seller/show-bids/{productId}",
       "UpstreamHttpMethod": [ "GET" ]
     },
@@ -139,10 +139,10 @@
           "Port": 59655
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/seller/show-bid/{productId}/{buyerEmailId}",
       "UpstreamHttpMethod": [ "GET" ]
     },
@@ -155,10 +155,10 @@
           "Port": 59655
         }
       ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "eauction_auth_scheme",
-      //  "AllowedScopes": []
-      //},
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
       "UpstreamPathTemplate": "/e-auction/api/v1/buyer/update-bid/{productId}/{buyerEmailId}/{newBidAmount}",
       "UpstreamHttpMethod": [ "PUT" ]
     }
