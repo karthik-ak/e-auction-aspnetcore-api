@@ -12,5 +12,7 @@ namespace EAuction.Order.Domain.Repositories
         Task<IEnumerable<Bid>> GetBids(string productId);
         Task<Bid> GetBid(string productId, string buyerEmailId);
         Task<bool> UpdateBidAmount(string productId, string buyerEmailId, decimal newBidAmount);
+        Task<bool> AcceptBid(Bid bid);
+        Task<bool> RejectBid(Bid bid);
     }
 }

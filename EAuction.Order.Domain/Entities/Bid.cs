@@ -31,6 +31,8 @@ namespace EAuction.Order.Domain.Entities
         [Required(ErrorMessage = "Product Id cannot be empty")]
         public string ProductId { get; set; }
         public decimal BidAmount { get; set; }
+        public string BidStatus { get; set; }
+        public string Comment { get; set; }
         public DateTime CreatedAt { get; set; }
         
     }

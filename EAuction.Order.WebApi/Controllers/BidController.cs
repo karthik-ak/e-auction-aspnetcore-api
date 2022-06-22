@@ -10,6 +10,7 @@ using EAuction.Order.Application.Commands.OrderCreate;
 using EAuction.Order.Application.Queries;
 using EAuction.Order.Application.Responses;
 using EAuction.Order.Domain.Entities;
+using EAuction.Order.Domain.Repositories;
 using EventBusRabbitMQ.Core;
 using EventBusRabbitMQ.Events;
 using EventBusRabbitMQ.Producer;
@@ -26,25 +27,31 @@ namespace EAuction.Order.WebApi.Controllers
         private readonly IMediator _mediator;
         private readonly ILogger<BidController> _logger;
         private readonly IMapper _mapper;
-        private readonly EventBusRabbitMQProducer _eventBus;      
+        private readonly EventBusRabbitMQProducer _eventBus;
+        private readonly IBidRepository _bidRepository;
 
-        public BidController(IMediator mediator, ILogger<BidController> logger, IMapper mapper, EventBusRabbitMQProducer eventBus)
+        public BidController(IMediator mediator,
+            ILogger<BidController> logger,
+            IMapper mapper,
+            EventBusRabbitMQProducer eventBus,
+            IBidRepository bidRepository)
         {
             _mediator = mediator;
             _logger = logger;
             _mapper = mapper;
             _eventBus = eventBus;
+            _bidRepository = bidRepository;
         }
-      
+
         [HttpGet("GetBids/{productId}")]
-        [ProducesResponseType(typeof(IEnumerable<BidResponse>),(int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<BidResponse>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<IEnumerable<BidResponse>>> GetBidsByProductId(string productId)
         {
             var query = new GetBidsByProductIdQuery(productId);
 
             var bids = await _mediator.Send(query);
-            if (bids.Count()== 0)
+            if (bids.Count() == 0)
             {
                 return NotFound();
             }
@@ -55,7 +62,7 @@ namespace EAuction.Order.WebApi.Controllers
         [HttpGet("GetBid/{productId}/{buyerEmailId}")]
         [ProducesResponseType(typeof(IEnumerable<BidResponse>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<IEnumerable<BidResponse>>> GetBidByProductIdAndEmailId(string productId,string buyerEmailId)
+        public async Task<ActionResult<IEnumerable<BidResponse>>> GetBidByProductIdAndEmailId(string productId, string buyerEmailId)
         {
             var query = new GetBidsByProductIdAndEmailIdQuery(productId, buyerEmailId);
             var bid = await _mediator.Send(query);
@@ -76,14 +83,14 @@ namespace EAuction.Order.WebApi.Controllers
             BidCreateEvent eventMessage = _mapper.Map<BidCreateEvent>(bidCreateCommand);
 
             try
-            {              
+            {
                 _eventBus.Publish(EventBusConstants.BidCreateQueue, eventMessage);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "ERROR Publishing integration event: {EventId} from {AppName}", eventMessage.Id, "Bidding");
                 throw;
-            }           
+            }
 
             return Ok(result);
         }
@@ -94,7 +101,23 @@ namespace EAuction.Order.WebApi.Controllers
         {
             var updateCommand = new BidUpdateCommand(productId, buyerEmailId, newBidAmount);
 
-            return Ok(await _mediator.Send(updateCommand));         
+            return Ok(await _mediator.Send(updateCommand));
+        }
+
+        [HttpPost("AcceptBid")]
+        [ProducesResponseType(typeof(Bid), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> AcceptBid([FromBody] Bid bid)
+        {
+            var result = await _bidRepository.AcceptBid(bid);
+            return Ok(result);
+        }
+
+        [HttpPost("RejectBid")]
+        [ProducesResponseType(typeof(Bid), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> RejectBid([FromBody] Bid bid)
+        {
+            var result = await _bidRepository.RejectBid(bid);
+            return Ok(result);
         }
     }
 }

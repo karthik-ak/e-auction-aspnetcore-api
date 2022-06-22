@@ -161,6 +161,38 @@
       },
       "UpstreamPathTemplate": "/e-auction/api/v1/buyer/update-bid/{productId}/{buyerEmailId}/{newBidAmount}",
       "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Bid/AcceptBid",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 59655
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
+      "UpstreamPathTemplate": "/e-auction/api/v1/buyer/accept-bid",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Bid/RejectBid",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 59655
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "eauction_auth_scheme",
+        "AllowedScopes": []
+      },
+      "UpstreamPathTemplate": "/e-auction/api/v1/buyer/reject-bid",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 }
